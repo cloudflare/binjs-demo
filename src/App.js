@@ -12,11 +12,13 @@ import jquery from "jquery";
 window["$"] = jquery;
 window.Promise = bluebird;
 
-range(1, 200).pipe(
-  filter(x => x % 2 === 1),
-  map(x => x + x)
-).subscribe(x => console.log(x));
-console.log("it's", moment().toString());
+function log() {
+  range(1, 20).pipe(
+    filter(x => x % 2 === 1),
+    map(x => x + x)
+  ).subscribe(x => console.log(x));
+  console.log("it's", moment().toString());
+}
 
 class App extends Component {
   state = {
@@ -28,15 +30,17 @@ class App extends Component {
   componentDidMount() {
     Promise.all([
       fetch(`${process.env.PUBLIC_URL || ""}/sf.json`),
-      fetch(`${process.env.PUBLIC_URL || ""}/ny.json`)
+      // fetch(`${process.env.PUBLIC_URL || ""}/ny.json`)
     ])
       .then(responses => Promise.all(responses.map(resp => resp.json())))
       .then(([sf, ny]) => {
         sf.forEach(day => (day.date = new Date(day.date)));
-        ny.forEach(day => (day.date = new Date(day.date)));
+        // ny.forEach(day => (day.date = new Date(day.date)));
 
-        this.setState({ temps: { sf, ny } });
+        this.setState({ temps: { sf, ny: [] } });
       });
+
+    log();
   }
 
   updateCity = e => {
