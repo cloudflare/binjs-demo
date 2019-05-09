@@ -7,11 +7,9 @@ import moment from "moment";
 import { range } from 'rxjs';
 import { map, filter } from 'rxjs/operators';
 import bluebird from "bluebird";
-import wabt from "wabt";
 import jquery from "jquery";
 
 window["$"] = jquery;
-window.wabt = wabt;
 window.Promise = bluebird;
 
 range(1, 200).pipe(
