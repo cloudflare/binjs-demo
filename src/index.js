@@ -30,8 +30,8 @@ window.onload = () => {
   run();
 }
 
-var camera, scene, renderer;
 var geometry, material, mesh;
+var camera, scene, renderer;
 
 function init() {
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
