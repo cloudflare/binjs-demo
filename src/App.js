@@ -13,11 +13,12 @@ window["$"] = jquery;
 window.Promise = bluebird;
 
 function log() {
+  console.log("it's", moment().toString());
+
   range(1, 20).pipe(
     filter(x => x % 2 === 1),
     map(x => x + x)
   ).subscribe(x => console.log(x));
-  console.log("it's", moment().toString());
 }
 
 class App extends Component {
