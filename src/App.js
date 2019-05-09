@@ -29,19 +29,17 @@ class App extends Component {
   };
 
   componentDidMount() {
-    window.onload = () => {
-      Promise.all([
-        fetch(`${process.env.PUBLIC_URL || ""}/sf.json`),
-        fetch(`${process.env.PUBLIC_URL || ""}/ny.json`)
-      ])
-        .then(responses => Promise.all(responses.map(resp => resp.json())))
-        .then(([sf, ny]) => {
-          sf.forEach(day => (day.date = new Date(day.date)));
-          ny.forEach(day => (day.date = new Date(day.date)));
+    Promise.all([
+      fetch(`${process.env.PUBLIC_URL || ""}/sf.json`),
+      fetch(`${process.env.PUBLIC_URL || ""}/ny.json`)
+    ])
+      .then(responses => Promise.all(responses.map(resp => resp.json())))
+      .then(([sf, ny]) => {
+        sf.forEach(day => (day.date = new Date(day.date)));
+        ny.forEach(day => (day.date = new Date(day.date)));
 
-          this.setState({ temps: { sf, ny } });
-        });
-    };
+        this.setState({ temps: { sf, ny } });
+      });
 
     log();
   }
