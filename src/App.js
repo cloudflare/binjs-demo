@@ -3,23 +3,6 @@ import "./App.css";
 import BarChart from "./visualizations/BarChart";
 import RadialChart from "./visualizations/RadialChart";
 import Chart from "./visualizations/Chart";
-import moment from "moment";
-import { range } from 'rxjs';
-import { map, filter } from 'rxjs/operators';
-import bluebird from "bluebird";
-import jquery from "jquery";
-
-window["$"] = jquery;
-window.Promise = bluebird;
-
-function log() {
-  console.log("it's", moment().toString());
-
-  range(1, 20).pipe(
-    filter(x => x % 2 === 1),
-    map(x => x + x)
-  ).subscribe(x => console.log(x));
-}
 
 class App extends Component {
   state = {
@@ -40,8 +23,6 @@ class App extends Component {
 
         this.setState({ temps: { sf, ny } });
       });
-
-    log();
   }
 
   updateCity = e => {
