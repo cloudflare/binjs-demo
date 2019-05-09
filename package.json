@@ -12,7 +12,8 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-scripts": "1.1.4",
-    "rxjs": "^6.5.1"
+    "rxjs": "^6.5.1",
+    "three": "^0.104.0"
   },
   "homepage": "http://sxywu.github.io/react-d3-example",
   "scripts": {
