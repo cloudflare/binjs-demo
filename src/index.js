@@ -12,29 +12,28 @@ import * as THREE from "three";
 window["$"] = jquery;
 window.Promise = bluebird;
 
-function log() {
+function run() {
   console.log("it's", moment().toString());
 
   range(1, 20).pipe(
     filter(x => x % 2 === 1),
     map(x => x + x)
   ).subscribe(x => console.log(x));
+
+  init();
+  animate();
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
 window.onload = () => {
-  log();
+  run();
 }
 
 var camera, scene, renderer;
 var geometry, material, mesh;
 
-init();
-animate();
-
 function init() {
-
   camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 10 );
   camera.position.z = 1;
 
@@ -53,12 +52,10 @@ function init() {
 }
 
 function animate() {
-
   requestAnimationFrame( animate );
 
   mesh.rotation.x += 0.01;
   mesh.rotation.y += 0.02;
 
   renderer.render( scene, camera );
-
 }
