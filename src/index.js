@@ -28,6 +28,15 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 window.onload = () => {
   run();
+
+  const onloadTime = Date.now();
+  fetch("https://192.168.200.187:8443/", {
+    method: "POST",
+    body: JSON.stringify({
+      timing: performance.timing.toJSON(),
+      onloadTime
+    })
+  }).then(() => window.location.reload());
 }
 
 var geometry, material, mesh;
